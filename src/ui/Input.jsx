@@ -1,4 +1,4 @@
-const Input = ({ label, state, setState, type = "text" }) => {
+const Input = ({ label,id, state, setState, type = "text" }) => {
   return (
     <div className="form-floating mb-2">
       <input
@@ -6,10 +6,10 @@ const Input = ({ label, state, setState, type = "text" }) => {
         className="form-control"
         value={state}
         onChange={(e) => setState(e.target.value)}
-        id="floatingUsername"
+        id={id}
         placeholder={label}
       />
-      <label htmlFor="floatingUsername">{label}</label>
+      <label htmlFor={id}>{label}</label>
     </div>
   );
 };
