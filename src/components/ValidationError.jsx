@@ -4,7 +4,6 @@ import { useCallback } from "react";
 const ValidationError = () => {
   const { error } = useSelector((state) => state.auth);
   const obj = error !== null && error.errors;
-  console.log(obj);
 
   const errorMessage = useCallback(() => {
     return Object.keys(obj).map((name) => {
@@ -12,8 +11,6 @@ const ValidationError = () => {
       return `${name} - ${msg}`;
     });
   }, [obj]);
-
-  console.log(error !== null && errorMessage());
 
   return (
     error !== null &&
