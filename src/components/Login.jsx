@@ -4,6 +4,7 @@ import { Input } from "../ui";
 import { useDispatch, useSelector } from "react-redux";
 import { signUserStart, signUserSuccess, signUserFailure } from "../slice/auth";
 import AuthService from "../service/auth";
+import { ValidationError } from "./";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -32,7 +33,7 @@ const Login = () => {
         <form>
           <img className="mb-2" src={icon} alt="" width="72" height="60" />
           <h1 className="h3 mb-3 fw-normal">Please login</h1>
-
+          <ValidationError />
           <Input
             label={"Email address"}
             id={"email"}
