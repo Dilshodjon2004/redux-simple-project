@@ -2,7 +2,8 @@ import { useState } from "react";
 import { icon } from "../constants";
 import { Input } from "../ui";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUserStart } from "../slice/auth";
+import { signUserStart, signUserSuccess, signUserFailure } from "../slice/auth";
+import AuthService from "../service/auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,12 +11,21 @@ const Login = () => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.auth);
 
-  const loginHandler = (e) => {
+  const loginHandler = async (e) => {
     e.preventDefault();
-    dispatch(loginUserStart());
+    dispatch(signUserStart());
+    const user = { email, password };
+    try {
+      const response = await AuthService.userLogin(user);
+      // console.log(response);
+      // console.log(user );
+      dispatch(signUserSuccess(response.user));
+    } catch (error) {
+      console.log(error.response.data);
+      dispatch(signUserFailure(error.response.data));
+    }
   };
 
-  console.log(isLoading);
   return (
     <div className="text-center mt-5">
       <main className="form-signin w-25 m-auto">
@@ -25,14 +35,14 @@ const Login = () => {
 
           <Input
             label={"Email address"}
-            id={'email'}
+            id={"email"}
             type={"email"}
             state={email}
             setState={setEmail}
           />
           <Input
             label={"Password"}
-            id={'password'}
+            id={"password"}
             type={"password"}
             state={password}
             setState={setPassword}
