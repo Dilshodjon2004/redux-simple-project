@@ -5,6 +5,10 @@ const ArticleService = {
     const { data } = await axios.get("/articles");
     return data;
   },
+  async getArticlesInfo(slug) {
+    const { data } = await axios.get(`/articles/${slug}`);
+    return data;
+  },
 };
 
 export default ArticleService;
