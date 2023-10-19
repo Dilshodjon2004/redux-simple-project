@@ -12,6 +12,7 @@ import AuthService from "./service/auth";
 import { useDispatch } from "react-redux";
 import { signUserSuccess } from "./slice/auth";
 import { getItem } from "./helpers/persistence-storage";
+import EditArticle from "./components/EditArticle";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/article/:slug" element={<ArticleDetail />} />
           <Route path="/create-article" element={<CreateArticle />} />
+          <Route path="/edit-article/:slug" element={<EditArticle />} />
         </Routes>
       </div>
     </div>

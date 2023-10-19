@@ -23,7 +23,7 @@ const CreateArticle = () => {
     dispatch(postArticleStart());
     const article = { title, description, body };
     try {
-      const response = await ArticleService.postArticle(article);
+      await ArticleService.postArticle(article);
       dispatch(postArticleSuccess());
 
       navigate("/");
